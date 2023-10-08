@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import AppRouter from "./components/router/AppRouter";
+import io from "socket.io-client";
 
 function App() {
+    const [message, setMessage] = useState<{name: string, text:string}>()
+    const [activeMessage, setActiveMessage] = useState(false)
+
+
+    useEffect(() => {
+        const socket = io('http://localhost:3001/'); // Замените адрес и порт на адрес вашего сервера Socket.IO
+
+        socket.on('connect', () => {
+            console.log('Соединение установлено');
+        });
+
+        socket.on('message', (data:any) => {
+            console.log('Получено сообщение:', data);
+            setActiveMessage(true)
+            setMessage(data)
+        });
+
+        return () => {
+            socket.disconnect(); // Отключить сокет при размонтировании компонента
+        };
+    }, []);
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setActiveMessage(false)
+        },3000)
+
+    },[message])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className={`messages ${activeMessage? 'active': ''}`}>
+            <div className={'name'}>{message?.name} </div>
+            <div>{message?.text}</div>
+        </div>
+      <div className='container'>
+        <AppRouter/>
+      </div>
     </div>
   );
 }

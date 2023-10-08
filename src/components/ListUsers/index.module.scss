@@ -1,0 +1,32 @@
+.containerListPeople {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  .wrapElem {
+    text-align: left;
+    display: flex;
+    width: min-content;
+    max-width: 312px;
+    min-width: 312px;
+    gap: 3px;
+    .avatar{
+      min-width: 164px;
+    }
+    .wrapUser{
+      .name{
+        font-weight: 600;
+      }
+    }
+    @media screen and (max-width: 600px){
+      display: flex;
+      flex-direction: column;
+      min-width: initial;
+    }
+  }
+  .link{
+    text-decoration: none;
+    color: black;
+  }
+}
