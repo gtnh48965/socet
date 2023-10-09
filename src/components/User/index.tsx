@@ -1,13 +1,12 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
-import axios from "axios";
 import styles from './index.module.scss';
-import { PropagateLoader } from "react-spinners";
-import { useUser } from "../context/UserContext";
+import {useUser} from "../context/UserContext";
+import back from '../../img/icon-back.png'
 
 const User = () => {
-    const { id } = useParams();
-    const { getUserById, deleteUserById } = useUser();
+    const {id} = useParams();
+    const {getUserById, deleteUserById} = useUser();
     const navigate = useNavigate();
     const userData = getUserById(Number(id));
 
@@ -15,17 +14,17 @@ const User = () => {
     const deleteData = () => {
         deleteUserById(Number(id))
     }
-    useEffect(()=>{
-        if(!userData)
-            setTimeout(()=>{
+    useEffect(() => {
+        if (!userData)
+            setTimeout(() => {
                 navigate('/')
-            },2000)
+            }, 1000)
 
-    },[userData])
+    }, [userData])
 
     return (
         <div className={styles.wrapUser}>
-            <Link className={styles.back} to={'/'}>{'<back'}</Link>
+            {userData ? <Link className={styles.back} to={'/'}><img src={back}/></Link> : ''}
             {userData?.id ?
                 <>
                     {userData?.avatar ? (
@@ -40,7 +39,7 @@ const User = () => {
                         />
                     ) : null}
 
-                    <div>
+                    <div className={styles.wrapText}>
                         <div>{userData?.first_name}</div>
                         <div>{userData?.last_name}</div>
                         <div>{userData?.email}</div>

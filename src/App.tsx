@@ -10,7 +10,7 @@ function App() {
     const [activeMessage, setActiveMessage] = useState(false);
 
     useEffect(() => {
-        const socket = io('127.0.0.1:3001/'); // Замените адрес и порт на адрес вашего сервера Socket.IO
+        const socket = io('127.0.0.1:5000'); // Замените адрес и порт на адрес вашего сервера Socket.IO
 
         socket.on('connect', () => {
             console.log('Соединение установлено');
