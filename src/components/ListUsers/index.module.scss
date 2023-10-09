@@ -1,9 +1,10 @@
 .containerListPeople {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
+
   .wrapElem {
     text-align: left;
     display: flex;
@@ -11,22 +12,74 @@
     max-width: 312px;
     min-width: 312px;
     gap: 3px;
-    .avatar{
+
+    .avatar {
       min-width: 164px;
+      max-width: 164px;
     }
-    .wrapUser{
-      .name{
+
+    .wrapUser {
+      .emil{
+        font-size: 12px;
+      }
+      .name {
         font-weight: 600;
       }
     }
-    @media screen and (max-width: 600px){
+
+    @media screen and (max-width: 600px) {
       display: flex;
       flex-direction: column;
       min-width: initial;
     }
   }
-  .link{
+
+  .link {
     text-decoration: none;
     color: black;
+  }
+  .formContainer {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    .wrapForm {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .fileUpload {
+        &::file-selector-button {
+          background-color: #fff;
+          color: #000;
+          border: 0px;
+          border-right: 1px solid #e5e5e5;
+          padding: 10px 15px;
+          margin-right: 20px;
+          transition: .5s;
+        }
+
+        &::file-selector-button:hover {
+          background-color: #eee;
+          border: 0px;
+          border-right: 1px solid #e5e5e5;
+        }
+      }
+
+      .inputText {
+        border-radius: 10px;
+        //border: inherit;
+        padding: 4px;
+        border: 1px solid gray;
+      }
+    ;
+
+      .buttonForm {
+        border: inherit;
+        cursor: pointer;
+        border-radius: 10px;
+        //border: inherit;
+        padding: 4px;
+      }
+    }
   }
 }
