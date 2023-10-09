@@ -18,7 +18,7 @@ const ListUsers = () => {
     const [loader, setLoader] = useState(false);
 
     const postGate = () => {
-        if (listPeople.length === 0) {
+        if (listPeople) {
             axios.get('https://reqres.in/api/users/').then((e) => {
                 e.data.data.map((e: userData) => addUser(e));
                 setLoader(true);

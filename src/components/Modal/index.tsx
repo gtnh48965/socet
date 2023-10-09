@@ -25,9 +25,10 @@ const Modal = (modalProps: modalProps) => {
     });
     const [formSubmitted, setFormSubmitted] = useState(false);
     useEffect(() => {
+        const elApp = document.getElementsByClassName('App') as HTMLCollectionOf<HTMLElement>
         if (openModal)
-            document.body.style.overflow = "hidden";
-        else document.body.style.overflow = "inherit";
+            elApp[0].style.overflow = "hidden";
+        else elApp[0].style.overflow= "inherit";
 
     }, [openModal]);
 
